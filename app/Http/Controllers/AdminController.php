@@ -38,15 +38,16 @@ class AdminController extends Controller
                         ->withInput();
         }
 
-        $user = new User;
+        $user = new User();
         $user->username = $req->username;
         $user->fullname = $req->fullname;
-        $user->birthdate = date('Y-m-d',$req->birthdate);
+        $user->birthdate = date('Y-m-d',strtotime($req->birthdate));
         $user->gender = $req->gender;
         $user->address = $req->address;
         $user->email = $req->email;
         $user->phone = $req->phone;
         $user->password = Hash::make($req->password);
+        $user->role = 'user';
         $user->save();
 
         return redirect()->route('dang_ki')->with('Đăng kí thành công');
