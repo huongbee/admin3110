@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -36,5 +37,18 @@ class AdminController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+
+        $user = new User;
+        $user->username = $req->username;
+        $user->fullname = $req->fullname;
+        $user->birthdate = date('Y-m-d',$req->birthdate);
+        $user->gender = $req->gender;
+        $user->address = $req->address;
+        $user->email = $req->email;
+        $user->phone = $req->phone;
+        $user->password = Hash::make($req->password);
+        $user->save();
+
+        return redirect()->route('dang_ki')->with('Đăng kí thành công');
     }
 }
