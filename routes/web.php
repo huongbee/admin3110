@@ -19,3 +19,7 @@ Route::get('register',[
     'uses'=>'AdminController@getRegister',
     'as'=>'dang_ki'
 ]);
+Route::post('register',[
+    'uses'=>'AdminController@postRegister',
+    'as'=>'dang_ki'
+]);
