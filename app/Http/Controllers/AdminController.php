@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use Hash;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -50,6 +51,36 @@ class AdminController extends Controller
         $user->role = 'user';
         $user->save();
 
-        return redirect()->route('dang_ki')->with('Đăng kí thành công');
+        return redirect()->route('dang_nhap')->with([
+            'success'=>'Đăng kí thành công'
+        ]);
     }
+    function getLogin(){
+        return view('pages.login');
+    }
+
+    function postLogin(Request $req){
+
+        ///validator
+
+        Auth::attempt([
+            'email'=>$req->email,
+            'password'=>$req->password
+        ]);
+        if(Auth::check()) 
+            return redirect()->route('trangchu');
+
+        return redirect()->route('dang_nhap')->with([
+            'error'=>'Sai thông tin đăng nhập'
+        ]);
+        
+    }
+
+    function getLogout(){
+        Auth::logout();
+        return redirect()->route('dang_nhap')->with([
+            'success'=>'Đăng xuất thành công'
+        ]);
+    }
+
 }

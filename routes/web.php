@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+})->name('trangchu');
 
 Route::get('register',[
     'uses'=>'AdminController@getRegister',
@@ -22,4 +22,19 @@ Route::get('register',[
 Route::post('register',[
     'uses'=>'AdminController@postRegister',
     'as'=>'dang_ki'
+]);
+
+
+Route::get('login',[
+    'uses'=>'AdminController@getLogin',
+    'as'=>'dang_nhap'
+]);
+Route::post('login',[
+    'uses'=>'AdminController@postLogin',
+    'as'=>'dang_nhap'
+]);
+
+Route::get('logout',[
+    'uses'=>'AdminController@getLogout',
+    'as'=>'dangxuat'
 ]);

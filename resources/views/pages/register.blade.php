@@ -46,11 +46,8 @@
         <input type="password" name="password" class="form-control" placeholder="Password" required>
         <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
         
-        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="login">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="login">Sign up</button>
     </form>
-    <a href="#" class="forgot-password">
-        Forgot the password?
-    </a>
 </div>
 @endsection
 
