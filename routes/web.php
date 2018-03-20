@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('register',[
+    'uses'=>'AdminController@getRegister',
+    'as'=>'dang_ki'
+]);

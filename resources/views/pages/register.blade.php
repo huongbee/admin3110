@@ -15,3 +15,5 @@
     </a>
 </div>
 @endsection
+
+@section('title','Đăng kí tài khoản')
