@@ -7,25 +7,26 @@
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <link rel="shortcut icon" href="img/favicon.html">
+    <link rel="shortcut icon" href="source/img/favicon.html">
 
     <title>@yield('title')</title>
+    <base href="http://localhost/admin3110/public/"/>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link href="source/css/bootstrap.min.css" rel="stylesheet">
+    <link href="source/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link href="source/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="source/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="source/css/owl.carousel.css" type="text/css">
 
       <!--right slidebar-->
-      <link href="css/slidebars.css" rel="stylesheet">
+      <link href="source/css/slidebars.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="source/css/style.css" rel="stylesheet">
+    <link href="source/css/style-responsive.css" rel="stylesheet" />
 
   </head>
 
@@ -139,7 +140,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="img/avatar-mini.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="source/img/avatar-mini.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jonathan Smith</span>
                                     <span class="time">Just now</span>
@@ -151,7 +152,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="img/avatar-mini2.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="source/img/avatar-mini2.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jhon Doe</span>
                                     <span class="time">10 mins</span>
@@ -163,7 +164,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="img/avatar-mini3.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="source/img/avatar-mini3.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jason Stathum</span>
                                     <span class="time">3 hrs</span>
@@ -175,7 +176,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="img/avatar-mini4.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="source/img/avatar-mini4.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jondi Rose</span>
                                     <span class="time">Just now</span>
@@ -256,7 +257,7 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="img/avatar1_small.jpg">
+                            <img alt="" src="source/img/avatar1_small.jpg">
                             <span class="username">Jhon Doue</span>
                             <b class="caret"></b>
                         </a>
@@ -362,7 +363,7 @@
           <section class="wrapper">
 
             @yield('content')
-            
+
           </section>
       </section>
       <!--main content end-->
@@ -379,27 +380,27 @@
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
-    <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-    <script src="js/owl.carousel.js" ></script>
-    <script src="js/jquery.customSelect.min.js" ></script>
-    <script src="js/respond.min.js" ></script>
+    <script src="source/js/jquery.js"></script>
+    <script src="source/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="source/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="source/js/jquery.scrollTo.min.js"></script>
+    <script src="source/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="source/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="source/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="source/js/owl.carousel.js" ></script>
+    <script src="source/js/jquery.customSelect.min.js" ></script>
+    <script src="source/js/respond.min.js" ></script>
 
     <!--right slidebar-->
-    <script src="js/slidebars.min.js"></script>
+    <script src="source/js/slidebars.min.js"></script>
 
     <!--common script for all pages-->
-    <script src="js/common-scripts.js"></script>
+    <script src="source/js/common-scripts.js"></script>
 
     <!--script for this page-->
-    <script src="js/sparkline-chart.js"></script>
-    <script src="js/easy-pie-chart.js"></script>
-    <script src="js/count.js"></script>
+    <script src="source/js/sparkline-chart.js"></script>
+    <script src="source/js/easy-pie-chart.js"></script>
+    <script src="source/js/count.js"></script>
 
   <script>
 

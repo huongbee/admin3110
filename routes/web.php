@@ -41,5 +41,18 @@ Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
         return view('welcome');
     })->name('trangchu');
     
+
+    Route::get('home',[
+        'uses'=>'AdminController@getHomePage',
+        'as' => 'home'
+    ]);
+    Route::get('edit/{id}-{alias}',[
+        'uses'=>'AdminController@getEditFood',
+        'as' => 'edit'
+    ]);
+    Route::get('delete/{id}-{alias}',[
+        'uses'=>'AdminController@getDeleteFood',
+        'as' => 'delete'
+    ]);
 });
 
