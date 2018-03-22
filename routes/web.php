@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('trangchu');
-
 Route::get('register',[
     'uses'=>'AdminController@getRegister',
     'as'=>'dang_ki'
@@ -38,3 +34,12 @@ Route::get('logout',[
     'uses'=>'AdminController@getLogout',
     'as'=>'dangxuat'
 ]);
+
+Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
+
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('trangchu');
+    
+});
+
