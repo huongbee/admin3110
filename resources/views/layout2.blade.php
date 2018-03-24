@@ -27,6 +27,7 @@
 
     <link href="source/css/style.css" rel="stylesheet">
     <link href="source/css/style-responsive.css" rel="stylesheet" />
+    <link href="ckeditor/ckeditor.js">
 
   </head>
 

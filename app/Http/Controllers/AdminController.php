@@ -8,6 +8,7 @@ use Validator;
 use Hash;
 use Auth;
 use App\Foods;
+use App\FoodType;
 
 class AdminController extends Controller
 {
@@ -90,9 +91,60 @@ class AdminController extends Controller
     }
 
     function getEditFood($id, $alias){
+        $types = FoodType::all();
+
         $food = Foods::where([
             'id'=>$id
         ])->first();
-        return view('pages.edit-food', compact('food'));
+        return view('pages.edit-food', compact('food','types'));
+    }
+
+    function postEditFood(Request $req){
+        $id = $req->id;
+        $food = Foods::find($id);
+        if($food){
+            $food->name = $req->name;
+            $food->id_type = $req->id_type;
+            $food->summary = $req->summary;
+            $food->detail = $req->detail;
+            $food->price = $req->price;
+            $food->promotion_price = $req->promotion_price;
+            $food->promotion = $req->promotion;
+            $food->update_at = date('Y-m-d',time());
+            $food->unit = $req->unit;
+            $food->today = $req->today==1 ? 1 : 0;
+
+            if($req->hasFile('image')){
+                //upload
+                $file = $req->file('image');
+        
+                if($file->getSize() > 102400){
+                    return redirect()->back()->with([
+                        'error'=>'File quá lớn'
+                    ]);
+                }
+                $arrExt = ['png','jpg','gif'];
+                $ext = $file->getClientOriginalExtension(); //png
+                if(!in_array($ext,$arrExt)){
+                    return redirect()->back()->with([
+                        'error'=>'File không được phép chọn'
+                    ]);
+                }
+                $baseName = $file->getClientOriginalName();
+                $newName = date('Y-m-d-H-i-m-').$baseName;
+                $file->move('source/img/hinh_mon_an',$newName);
+
+                $food->image = $newName;
+            }
+            $food->save();
+            return redirect()->route('home')->with([
+                'success'=>'Cập nhật thành công'
+            ]);
+
+        }
+        return redirect()->back()->with([
+            'error'=>'Không tìm thấy sản phẩm'
+        ]);
+
     }
 }

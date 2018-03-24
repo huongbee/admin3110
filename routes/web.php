@@ -48,8 +48,13 @@ Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
     ]);
     Route::get('edit/{id}-{alias}',[
         'uses'=>'AdminController@getEditFood',
+        'as' => 'get_edit'
+    ]);
+    Route::post('edit/{id}',[
+        'uses'=>'AdminController@postEditFood',
         'as' => 'edit'
     ]);
+
     Route::get('delete/{id}-{alias}',[
         'uses'=>'AdminController@getDeleteFood',
         'as' => 'delete'

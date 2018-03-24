@@ -29,7 +29,7 @@
                             <img src="source/img/hinh_mon_an/{{$f->image}}" height="100px">
                             </td>
                             <td>
-                            <a href="{{route('edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> | 
+                            <a href="{{route('get_edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> | 
                             
                             <a href="{{route('delete',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}">
                                 <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>

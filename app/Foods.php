@@ -8,6 +8,8 @@ class Foods extends Model
 {
     public $table = 'foods';
 
+    public $timestamps = false;
+
     function pageUrl(){
         return $this->belongsTo('App\PageUrl','id_url','id');
     }
