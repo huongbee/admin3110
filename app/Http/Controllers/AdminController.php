@@ -169,6 +169,7 @@ class AdminController extends Controller
         ]);
 
     }
+    /*
     function getDeleteFood(Request $req){
         $id = $req->id;
         $alias = $req->alias;
@@ -201,5 +202,24 @@ class AdminController extends Controller
                 'error'=>'Không tìm thấy sản phẩm'
             ]);
         }
+    }
+    */
+    function getDeleteFood(Request $req){
+        $id = $req->id;
+        $alias = $req->alias;
+
+        $food = Foods::join('page_url',function($join) use($id,$alias){
+                    $join->on('foods.id_url','=','page_url.id');
+                    $join->where([
+                        ['foods.id','=',$id],
+                        ['url','=',$alias]
+                    ]);
+                })->first();
+        if($food){
+            $food->deleted = 1;
+            $food->save();
+            echo "success";
+        }
+        else echo "error";
     }
 }

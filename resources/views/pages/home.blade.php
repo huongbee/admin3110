@@ -30,7 +30,7 @@
                     <tbody>
                         <?php $stt = 1;?>
                         @foreach($foods as $f)
-                        <tr>
+                        <tr id="food-{{$f->id}}">
                             <td>{{$stt++}}</td>
                             <td>{{$f->name}}</td>
                             <td>{{$f->foodType->name}}</td>
@@ -65,7 +65,7 @@
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-success btn-Accept" >
-        <a id="link-remove" href="">Ok</a>
+        <a id="link-remove" >Ok</a>
         </button>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -77,6 +77,11 @@
 <script>
 $(document).ready(function(){
     $('.delete-food').click(function(){
+        
+        //reset modal
+        $('.btn-Accept').show()
+        $('.modal-body').html('<p>Bạn có chắc chắn xoá <b class="name-food">...</b> hay không?</p>')
+
         var id = $(this).attr('data-id');
         var alias = $(this).attr('data-alias');
         var name = $(this).attr('data-name');
@@ -87,26 +92,35 @@ $(document).ready(function(){
         //console.log(route)
 
         $('.name-food').html(name)
-        $('#link-remove').attr('href',route)
+        //$('#link-remove').attr('href',route)
 
         $('#myModal').modal('show')
 
 
-        // $('#myModal').on('hidden.bs.modal', function (e) {
-        //     id =name = alias = ''
-        // })
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            id =name = alias = ''
+        })
         
-        // $('.btn-Accept').click(function(){
-        //     if(id != '' && alias!= ''){
-        //         $.ajax({
-        //             type: "GET",
-        //             url: route  ,
-        //             success:function(data){
-        //                 console.log(data)
-        //             }
-        //         })
-        //     }
-        // })
+        $('.btn-Accept').click(function(){
+            if(id != '' && alias!= ''){
+                $.ajax({
+                    type: "GET",
+                    url: route  ,
+                    success:function(data){
+                        //console.log(data)
+                        if($.trim(data)=="success"){
+                            $('.modal-body').html('Xoá thành công')
+                            $('.btn-Accept').hide()
+                            $('#food-'+id).hide()
+                        }
+                        else{
+                            $('.modal-body').html('Xoá thất bại')
+                            $('.btn-Accept').hide()
+                        }
+                    }
+                })
+            }
+        })
     })
     
         
