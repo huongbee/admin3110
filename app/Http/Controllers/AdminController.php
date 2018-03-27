@@ -88,7 +88,9 @@ class AdminController extends Controller
     }
 
     function getHomePage(){
-        $foods = Foods::with('foodType','pageUrl')->paginate(10);
+        $foods = Foods::with('foodType','pageUrl')
+                ->where('deleted',0)
+                ->paginate(10);
         return view('pages/home',compact('foods'));
     }
 
@@ -168,6 +170,36 @@ class AdminController extends Controller
 
     }
     function getDeleteFood(Request $req){
-        echo $req->id;
+        $id = $req->id;
+        $alias = $req->alias;
+
+        $food = Foods::join('page_url',function($join) use($id,$alias){
+                    $join->on('foods.id_url','=','page_url.id');
+                    $join->where([
+                        ['foods.id','=',$id],
+                        ['url','=',$alias]
+                    ]);
+                })->first();
+
+        // $food = Foods::join('page_url',function($join){
+        //                 $join->on('foods.id_url','=','page_url.id');
+        //             })->where([
+        //                 ['foods.id','=',$id],
+        //                 ['url','=',$alias]
+        //             ])->first();
+
+        if($food){
+            $food->deleted = 1;
+            $food->save();
+            //$food->delete();
+            return redirect()->route('home')->with([
+                'success'=>'Xoá thành công'
+            ]);
+        }
+        else{
+            return redirect()->route('home')->with([
+                'error'=>'Không tìm thấy sản phẩm'
+            ]);
+        }
     }
 }

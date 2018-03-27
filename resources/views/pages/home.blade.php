@@ -6,6 +6,16 @@
                 <b>Danh sách sản phẩm</b>
             </div>
             <div class="panel-body">
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                    {{Session::get('success')}}
+                    </div>
+                @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-error">
+                    {{Session::get('error')}}
+                    </div>
+                @endif
                 <table class="table table-bordered">
                     <thead>
                         <tr>
