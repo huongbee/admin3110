@@ -167,4 +167,7 @@ class AdminController extends Controller
         ]);
 
     }
+    function getDeleteFood(Request $req){
+        echo $req->id;
+    }
 }

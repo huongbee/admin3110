@@ -29,10 +29,9 @@
                             <img src="source/img/hinh_mon_an/{{$f->image}}" height="100px">
                             </td>
                             <td>
-                            <a href="{{route('get_edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> | 
+                            <a href="{{route('get_edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> |
                             
-                        
-                            <a class="delete-food">
+                            <a class="delete-food" data-name="{{$f->name}}" data-id="{{$f->id}}" data-alias="{{$f->pageUrl->url}}">
                                 <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
                             </a>
                             </td>
@@ -55,7 +54,9 @@
         <p>Bạn có chắc chắn xoá <b class="name-food">...</b> hay không?</p>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-success btn-Accept" >Ok</button>
+      <button type="button" class="btn btn-success btn-Accept" >
+        <a id="link-remove" href="">Ok</a>
+        </button>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -66,12 +67,39 @@
 <script>
 $(document).ready(function(){
     $('.delete-food').click(function(){
-        var id = 1;
-        var alias = '1234'
-        var name = "23edsdf";
+        var id = $(this).attr('data-id');
+        var alias = $(this).attr('data-alias');
+        var name = $(this).attr('data-name');
+
+        var route = "{{route('delete',['id', 'alias'])}}";
+        route = route.replace('id',id)
+        route = route.replace('alias',alias)
+        //console.log(route)
+
+        $('.name-food').html(name)
+        $('#link-remove').attr('href',route)
 
         $('#myModal').modal('show')
+
+
+        // $('#myModal').on('hidden.bs.modal', function (e) {
+        //     id =name = alias = ''
+        // })
+        
+        // $('.btn-Accept').click(function(){
+        //     if(id != '' && alias!= ''){
+        //         $.ajax({
+        //             type: "GET",
+        //             url: route  ,
+        //             success:function(data){
+        //                 console.log(data)
+        //             }
+        //         })
+        //     }
+        // })
     })
+    
+        
 })
 </script>
 @endsection

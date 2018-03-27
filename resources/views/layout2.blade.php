@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="source/img/favicon.html">
 
     <title>@yield('title')</title>
-    <base href="http://localhost/admin3110/public/"/>
+    <base href="{{asset('')}}"/>
 
     <!-- Bootstrap core CSS -->
     <link href="source/css/bootstrap.min.css" rel="stylesheet">
