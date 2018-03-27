@@ -9,6 +9,8 @@ use Hash;
 use Auth;
 use App\Foods;
 use App\FoodType;
+use App\PageUrl;
+use App\Functions;
 
 class AdminController extends Controller
 {
@@ -102,6 +104,17 @@ class AdminController extends Controller
     function postEditFood(Request $req){
         $id = $req->id;
         $food = Foods::find($id);
+
+        $name = $req->name;
+        $foodCheck = Foods::where([
+            ['id','<>',$id],
+            ['name','=',$name]
+        ])->get();
+        if($foodCheck==null){
+            echo "ton tai ten";
+            return;
+        }
+
         if($food){
             $food->name = $req->name;
             $food->id_type = $req->id_type;
@@ -137,6 +150,13 @@ class AdminController extends Controller
                 $food->image = $newName;
             }
             $food->save();
+
+            $idUrl = $food->id_url;
+            $url = PageUrl::find($idUrl);
+            $function = new Functions;
+            $url->url = $function->changeTitle($req->name);
+            $url->save();
+
             return redirect()->route('home')->with([
                 'success'=>'Cập nhật thành công'
             ]);

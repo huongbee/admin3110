@@ -15,4 +15,5 @@ class PageUrl extends Model
             'id'
         );
     }
+    public $timestamps = false;
 }

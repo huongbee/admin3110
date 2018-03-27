@@ -31,12 +31,14 @@
                             <td>
                             <a href="{{route('get_edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> | 
                             
-                            <a href="{{route('delete',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}">
+                        
+                            <a class="delete-food">
                                 <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
                             </a>
                             </td>
                         </tr>
                         @endforeach
+                        <!-- {{route('delete',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}} -->
                     </tbody>
                 </table>
                 {{$foods->links()}}
@@ -44,4 +46,32 @@
         </div>
     </section>
 </div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Bạn có chắc chắn xoá <b class="name-food">...</b> hay không?</p>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-success btn-Accept" >Ok</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="source/js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    $('.delete-food').click(function(){
+        var id = 1;
+        var alias = '1234'
+        var name = "23edsdf";
+
+        $('#myModal').modal('show')
+    })
+})
+</script>
 @endsection
