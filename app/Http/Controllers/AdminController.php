@@ -106,18 +106,19 @@ class AdminController extends Controller
     function postEditFood(Request $req){
         $id = $req->id;
         $food = Foods::find($id);
-
-        $name = $req->name;
-        $foodCheck = Foods::where([
-            ['id','<>',$id],
-            ['name','=',$name]
-        ])->get();
-        if($foodCheck==null){
-            echo "ton tai ten";
-            return;
-        }
-
         if($food){
+            $name = $req->name;
+        
+            $foodCheck = Foods::where([
+                ['id','<>',$id],
+                ['name','=',$name]
+            ])->first();
+            //dd($foodCheck);
+            if(!empty($foodCheck)){
+                return redirect()->route('home')->with([
+                    'error'=>'Tên món ăn tồn tại'
+                ]);
+            }
             $food->name = $req->name;
             $food->id_type = $req->id_type;
             $food->summary = $req->summary;
