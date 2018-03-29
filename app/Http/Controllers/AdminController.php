@@ -210,17 +210,22 @@ class AdminController extends Controller
         $id = $req->id;
         $alias = $req->alias;
 
-        $food = Foods::join('page_url',function($join) use($id,$alias){
+        $food = Foods::select('foods.*')->join('page_url',function($join) use($id,$alias){
                     $join->on('foods.id_url','=','page_url.id');
                     $join->where([
                         ['foods.id','=',$id],
                         ['url','=',$alias]
                     ]);
                 })->first();
+
+        //$food = Foods::where('id',$id)->first();
+        
         if($food){
             $food->deleted = 1;
             $food->save();
+            //dd($food);
             echo "success";
+            //return redirect()->route('home');
         }
         else echo "error";
     }

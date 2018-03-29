@@ -47,8 +47,7 @@ Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
         'as' => 'home'
     ]);
 
-
-    Route::group(['middleware'=>'isAdmin'],function(){
+    Route::group(['middleware'=>'isEditor'],function(){
         Route::get('edit/{id}-{alias}',[
             'uses'=>'AdminController@getEditFood',
             'as' => 'get_edit'
@@ -57,7 +56,10 @@ Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
             'uses'=>'AdminController@postEditFood',
             'as' => 'edit'
         ]);
-    
+    });
+
+    Route::group(['middleware'=>'isAdmin'],function(){
+       
         Route::get('delete/{id}-{alias}',[
             'uses'=>'AdminController@getDeleteFood',
             'as' => 'delete'

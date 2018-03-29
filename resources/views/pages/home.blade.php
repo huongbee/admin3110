@@ -38,13 +38,19 @@
                             <td>
                             <img src="source/img/hinh_mon_an/{{$f->image}}" height="100px">
                             </td>
+
                             <td>
-                            <a href="{{route('get_edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> |
-                            
-                            <a class="delete-food" data-name="{{$f->name}}" data-id="{{$f->id}}" data-alias="{{$f->pageUrl->url}}">
-                                <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                            </a>
+                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'editor' )
+                                <a href="{{route('get_edit',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}}"><i class="fa fa-edit fa-2x"></i></a> |
+                                @endif
+                                @if(Auth::user()->role == 'admin' )
+                                
+                                <a class="delete-food" data-name="{{$f->name}}" data-id="{{$f->id}}" data-alias="{{$f->pageUrl->url}}">
+                                    <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                                </a>
+                                @endif
                             </td>
+
                         </tr>
                         @endforeach
                         </tbody>
@@ -106,8 +112,8 @@ $(document).ready(function(){
                     type: "GET",
                     url: route  ,
                     success:function(data){
-                        //console.log(data)
-                        if($.trim(data)=="success"){
+                        console.log(data)
+                        if($.trim(data)!="error"){
                             $('.modal-body').html('Xoá thành công')
                             $('.btn-Accept').hide()
                             $('#food-'+id).hide()
