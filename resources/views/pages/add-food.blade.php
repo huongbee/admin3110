@@ -1,4 +1,4 @@
-@extends('layout2') @section('title', Thêm món ăn mới) @section('content')
+@extends('layout2') @section('title', 'Thêm món ăn mới') @section('content')
 <div class="panel panel-body">
     <section class="content">
         <div class="panel panel-default">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                     </div>
                     {{@csrf_field()}}

@@ -225,6 +225,7 @@ class AdminController extends Controller
     }
 
     function getAddFood(){
-        return view('pages/add-food');
+        $types = FoodType::all();
+        return view('pages/add-food', compact('types'));
     }
 }
