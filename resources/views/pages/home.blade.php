@@ -47,8 +47,7 @@
                             </td>
                         </tr>
                         @endforeach
-                        <!-- {{route('delete',['id'=>$f->id, 'alias'=>$f->pageUrl->url])}} -->
-                    </tbody>
+                        </tbody>
                 </table>
                 {{$foods->links()}}
             </div>
