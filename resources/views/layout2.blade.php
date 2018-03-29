@@ -292,11 +292,11 @@
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class=" fa fa-envelope"></i>
-                          <span>Mail</span>
+                          <span>Món ăn</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="inbox.html">Inbox</a></li>
-                          <li><a  href="inbox_details.html">Inbox Details</a></li>
+                          <li><a  href="{{route('home')}}">Danh sách món ăn</a></li>
+                          <li><a  href="{{route('add_food')}}">Thêm mới</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

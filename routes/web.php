@@ -59,5 +59,14 @@ Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
         'uses'=>'AdminController@getDeleteFood',
         'as' => 'delete'
     ]);
+
+    Route::get('add-food',[
+        'uses'=>'AdminController@getAddFood',
+        'as' => 'add_food'
+    ]);
+    Route::post('add-food',[
+        'uses'=>'AdminController@postAddFood',
+        'as' => 'add_food'
+    ]);
 });
 
