@@ -6,11 +6,21 @@
                 <b>Thêm món ăn mới</b>
             </div>
             <div class="panel-body">
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                    {{Session::get('success')}}
+                    </div>
+                @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">
+                    {{Session::get('error')}}
+                    </div>
+                @endif
                 <form method="post" class="form-horizontal" action="{{route('add_food')}}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">Tên sản phẩm:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Nhập tên sp" name="name">
+                            <input type="text" class="form-control" placeholder="Nhập tên sp" name="name" value="{{old('name')}}">
                         </div>
                     </div>
 
@@ -27,7 +37,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">Giá sản phẩm:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Nhập giá sp" name="price">
+                            <input type="text" class="form-control" placeholder="Nhập giá sp" name="price" value="{{old('price')}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,7 +84,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="file" name="image">
+                                    <input type="file" name="image" required>
                                 </label>
                             </div>
                         </div>

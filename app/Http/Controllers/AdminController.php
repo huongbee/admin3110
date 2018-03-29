@@ -90,6 +90,7 @@ class AdminController extends Controller
     function getHomePage(){
         $foods = Foods::with('foodType','pageUrl')
                 ->where('deleted',0)
+                ->orderBy('id','DESC')
                 ->paginate(10);
         return view('pages/home',compact('foods'));
     }
@@ -227,5 +228,63 @@ class AdminController extends Controller
     function getAddFood(){
         $types = FoodType::all();
         return view('pages/add-food', compact('types'));
+    }
+
+    function postAddFood(Request $req){
+        $name = $req->name;
+        $foodCheck = Foods::where('name',$name)->first();
+        
+        if(!empty($foodCheck)){
+            return redirect()->route('add_food')
+                    ->with([
+                        'error'=>'Tên món ăn tồn tại'
+                    ])
+                    ->withInput($req->all());
+        }
+
+        $function = new Functions;
+
+        $url = new PageUrl;
+        $url->url = $function->changeTitle($req->name);
+        $url->save();
+
+        $food = new Foods;
+        $food->name = $req->name;
+        $food->id_type = $req->id_type;
+        $food->id_url = $url->id; //lấy id của url đã lưu ở line 246    
+        $food->summary = $req->summary;
+        $food->detail = $req->detail;
+        $food->price = $req->price;
+        $food->promotion_price = $req->promotion_price;
+        $food->promotion = $req->promotion;
+        $food->update_at = date('Y-m-d',time());
+        $food->unit = $req->unit;
+        $food->today = $req->today==1 ? 1 : 0;
+
+        $file = $req->file('image');
+        
+        if($file->getSize() > 102400){
+            return redirect()->back()->with([
+                'error'=>'File quá lớn'
+            ])->withInput($req->all());;
+        }
+        $arrExt = ['png','jpg','gif'];
+        $ext = $file->getClientOriginalExtension(); //png
+        if(!in_array($ext,$arrExt)){
+            return redirect()->back()->with([
+                'error'=>'File không được phép chọn'
+            ])->withInput($req->all());;
+        }
+        $baseName = $file->getClientOriginalName();
+        $newName = date('Y-m-d-H-i-m-').$baseName;
+        $file->move('source/img/hinh_mon_an',$newName);
+
+        $food->image = $newName;
+        $food->save();
+
+        return redirect()->route('home')->with([
+            'success'=>'Thêm thành công'
+        ]);
+
     }
 }
