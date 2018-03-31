@@ -76,3 +76,18 @@ Route::group(['prefix'=>'admin', 'middleware'=> 'adminCheck'], function(){
     });
 });
 
+
+
+Route::get('admin-login',[
+    'uses'=>'Admin_2Controller@getLogin',
+    'as'=>'admin_dang_nhap'
+]);
+Route::post('admin-login',[
+    'uses'=>'Admin_2Controller@postLogin',
+    'as'=>'admin_dang_nhap'
+]);
+
+Route::get('admin-logout',[
+    'uses'=>'Admin_2Controller@getLogout',
+    'as'=>'admin_dangxuat'
+]);
