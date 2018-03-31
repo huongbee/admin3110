@@ -27,7 +27,7 @@
 
     <form class="form-signin" method="post">
         @csrf
-        <input type="email" name="email" class="form-control" placeholder="Email address" required>
+        <input type="text" name="username" class="form-control" placeholder="Enter username" required>
         
         <input type="password" name="password" class="form-control" placeholder="Password" required>
         
