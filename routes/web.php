@@ -91,3 +91,6 @@ Route::get('admin-logout',[
     'uses'=>'Admin_2Controller@getLogout',
     'as'=>'admin_dangxuat'
 ]);
+
+
+Route::get('send-mail-demo',"Admin_2Controller@getSendMail");
