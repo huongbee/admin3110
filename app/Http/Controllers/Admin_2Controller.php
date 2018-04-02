@@ -39,11 +39,20 @@ class Admin_2Controller extends Controller
             ['id','<=',5]
         ])->get();
 
-        Mail::send('pages.send_email', ['products' => $products], function ($message)
+        // to 1 persion
+        //$emailReceiver = 'huongnguyenak96@gmail.com';
+
+        // to multi persions
+        $emailReceiver = [
+            'huongnguyenak96@gmail.com',
+            'nguyentruongconganh1997@gmail.com'
+        ];
+
+        Mail::send('pages.send_email', ['products' => $products], function ($message) use ($emailReceiver)
         {
             $message->from('huongnguyen08.cv@gmail.com', 'PHP 3110');
-            $message->to('huongnguyenak96@gmail.com','ngoc huong');
-            $message->subject('Test Mail');
+            $message->to($emailReceiver,'ngoc huong');
+            $message->subject('Test Mail 2');
         });
         echo "success";
     }
